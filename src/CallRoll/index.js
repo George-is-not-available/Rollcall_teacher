@@ -119,8 +119,8 @@ function App(){
                 footerFill={true}
                 onOk={changePoints}
                 onCancel={closeModal}
-                okText={'加分!'}
-                cancelText={'答错了'}
+                okText={'加分1分!'}
+                cancelText={'哎，可惜，你答错了'}
                 motion
             >
                 {randomStudent}

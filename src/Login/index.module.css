@@ -1,6 +1,5 @@
 .Page{
-  /*padding: 180px 235px 180px 175px;*/
-  /*margin: 10vw 15vw;*/
+  /*1*/
 }
 .App{
   display: flex;
@@ -14,13 +13,13 @@
   display: flex;
   flex-direction: column;
   padding: 80px 100px 123px 100px;
-  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.10), 0px 0px 1px 0px rgba(0, 0, 0, 0.30);
+  box-shadow: 0px 4px 14px 3px rgba(0, 0, 0, 0.10), 0px 0px 1px 0px rgba(0, 0, 0, 0.30);
   gap: 16px;
   transform: scale(0.75);
 }
 .firstPart{
   display: flex;
-  margin-bottom: 32px;
+  margin-bottom: 100px;
 
 }
 .secondPart{
@@ -29,21 +28,30 @@
   align-items: center;
   width: 414px;
   gap: 30px;
-  margin-bottom: 109px;
+  margin-bottom: 75px;
 }
 .thirdPart{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 21px;
-  margin-bottom: 119px;
+  gap: 30px;
+  margin-bottom: 70px;
 }
 .logo{
-  width: 530px;
-  height: 525px;
+  width:730px;
+  height: 725px;
   margin: 97.5px 0;
   transform: scale(0.75);
+  margin-top: 270px;
 }
 .Divider{
-  width: 440px;
+  width: 520px;
+}
+
+.goldenText {
+  color: goldenrod;
+}
+
+.blackText{
+  color: rgb(37, 37, 37);
 }

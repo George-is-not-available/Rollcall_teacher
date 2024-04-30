@@ -7,6 +7,8 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import Register from './register';
+import AddCourseForm from './AddCourseForm';
 
 
 const App = () => {
@@ -15,14 +17,26 @@ const App = () => {
             path: "/",
             element: <div>Hello world！</div>,
         },
+
+        {
+            path:"/register",
+            element:<Register/>
+        },
+
         {
             path: "/login",
             element: <Login />,
         },
+      {
+            path:"/addCourseForm",
+            element:<AddCourseForm/>
+        },
+
         {
-            path: "Courses",
+            path: "/courses",
             element: <Courses/>,
         },
+
         {
             path: "/callRoll",
             element: <CallRoll/>,
