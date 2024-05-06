@@ -20,7 +20,7 @@ const AddCourseForm = () => {
     try {
       setLoading(true);
       // 模拟表单提交（实际情况下需要替换为真实的 API 调用）
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 6500));
       message.success("课程添加成功！");
       navigate("/Courses");
     } catch (error) {
@@ -49,10 +49,10 @@ const AddCourseForm = () => {
         <Form.Item
           name="courseDescription"
           label="课程描述"
-          rules={[{ max: 150, message: "课程描述不能超过150个字" }]}
+          rules={[{ max: 200, message: "课程描述不能超过200个字符" }]}
         >
           <Input.TextArea placeholder="请输入课程描述" />
-        </Form.Item>  
+        </Form.Item>
         {/* 提交和返回按钮 */}
         <Form.Item className={styles.actions}>
           <Button type="primary" htmlType="submit" loading={loading}>

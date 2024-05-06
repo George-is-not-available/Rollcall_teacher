@@ -27,14 +27,15 @@ const App = () => {
             path: "/login",
             element: <Login />,
         },
-      {
-            path:"/addCourseForm",
-            element:<AddCourseForm/>
-        },
-
+      
         {
             path: "/courses",
             element: <Courses/>,
+        },
+
+        {
+            path:"/svip",
+            element: <svip/>
         },
 
         {

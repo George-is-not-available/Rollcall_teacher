@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Divider, Button, Input } from '@douyinfe/semi-ui';
+import { Typography, Divider, Button, Input, Modal } from '@douyinfe/semi-ui'; // 假设有弹窗组件 Modal
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -9,10 +9,16 @@ function Register() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    
+    const [orderNumber, setOrderNumber] = useState(''); // 新增订单号状态
+    const [paymentSuccess, setPaymentSuccess] = useState(false); // 新增支付状态
+
     const handleRegister = () => {
         if (password !== confirmPassword) {
             setErrorMsg('两次输入的密码不一致');
+            return;
+        }
+        if (!paymentSuccess) { // 检查支付状态
+            setErrorMsg('请完成支付后再注册');
             return;
         }
         // 保存密码到本地存储
@@ -20,6 +26,34 @@ function Register() {
         // 注册成功后导航到登录页面
         navigate("/login");
     };
+
+    const handlePayment = () => {
+        // 弹出模态框，要求输入订单号
+        Modal.confirm({
+            title: '请输入订单号',
+            content: (
+                <div>
+                    <Input
+                        value={orderNumber}
+                        placeholder="你支付的订单号"
+                        onChange={(e) => setOrderNumber(e)} 
+                    />
+                    <img src={process.env.PUBLIC_URL + '/payment.jpg'} alt="payment" style={{ maxWidth: '100%', maxHeight: '100%', display: 'block', margin: 'auto' }} />
+                </div>
+            ),
+            onOk: () => {
+                // 订单号验证逻辑
+                if (orderNumber.startsWith('10') && orderNumber.length === 32) {
+                    // 假设验证通过，设置支付状态为 true
+                    setPaymentSuccess(true);
+                } else {
+                    // 订单号不符合要求，显示错误消息
+                    setErrorMsg('订单号不符合要求');
+                }
+            }
+        });
+    };
+    
 
     return (
         <div>
@@ -44,6 +78,7 @@ function Register() {
                 onChange={(e) => setConfirmPassword(e)}
                 style={{ marginBottom: '20px' }}
             />
+            <Button onClick={handlePayment} style={{ marginRight: '10px' }}>支付</Button> {/* 添加支付按钮 */}
             <Button onClick={handleRegister} style={{ marginRight: '10px' }}>注册</Button>
             <Button onClick={() => navigate("/login")}>返回登陆界面</Button>
             {errorMsg && <Typography.Text type="danger">{errorMsg}</Typography.Text>}
