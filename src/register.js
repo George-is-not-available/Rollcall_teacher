@@ -43,7 +43,7 @@ function Register() {
             ),
             onOk: () => {
                 // 订单号验证逻辑
-                if (orderNumber.startsWith('10') && orderNumber.length === 32) {
+                if (orderNumber.startsWith('100') && orderNumber.length === 32) {
                     // 假设验证通过，设置支付状态为 true
                     setPaymentSuccess(true);
                 } else {
