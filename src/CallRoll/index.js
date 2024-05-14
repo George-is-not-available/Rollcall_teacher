@@ -12,7 +12,7 @@ function Modal({ onClose, student, onAddPoint, onSubtractPoint }) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <h2>随机选择的学生是：</h2>
+                <h2>随机选择的学生是：</h2> 
                 <p>{student.name}</p>
                 <div>
                     <Button onClick={onAddPoint} style={{ marginRight: 8 }}>+1分</Button>

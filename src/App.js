@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './Login/index.js';
 import CallRoll from './CallRoll/index.js';
 import Courses from './CoursesPage/index.js';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from './register';
-import AddCourseForm from './Add-courses/AddCoursePage.js';
+import AddCourseForm from './Addcourses/AddCoursePage.js';
 
 import imageUrl from './AD.png'; // 引入本地图片
 
@@ -25,7 +25,7 @@ const App = () => {
 
     const adUrl = "http://tp.9377s.com/1489582/";
 
-    const router = createBrowserRouter([
+    const routes = [
         {
             path: "/",
             element: (
@@ -86,8 +86,30 @@ const App = () => {
                 </div>
             )
         },
-        
-    ]);
+        // 添加其他页面的路由配置
+        {
+            path: "/login",
+            element: <Login />
+        },
+        {
+            path: "/callroll",
+            element: <CallRoll />
+        },
+        {
+            path: "/courses",
+            element: <Courses />
+        },
+        {
+            path: "/register",
+            element: <Register />
+        },
+        {
+            path: "/add",
+            element: <AddCourseForm />
+        }
+    ];
+
+    const router = createBrowserRouter(routes);
 
     return <RouterProvider router={router} />;
 }
