@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from './Login/index.js';
-import CallRoll from './CallRoll/index.js';
-import Courses from './CoursesPage/index.js';
-import Register from './components/Register';
-import AddCourseForm from './AddCoursePage';
-import AdComponent from './components/AdComponent'; 
+import Login from '../src/Login/index.js';
+import CallRoll from '../src/CallRoll/index.js';
+import Courses from '../src/CoursesPage/index.js';
+import Register from '../src/components/Register.js';
+import AddCourseForm from '../src/AddCoursePage.js';
+import AdComponent from '../src/components/AdComponent.js'; 
 
 const App = () => {
     const [showAd, setShowAd] = useState(false);
