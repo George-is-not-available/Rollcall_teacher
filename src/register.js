@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Divider, Button, Input, Modal } from '@douyinfe/semi-ui'; // 假设有弹窗组件 Modal
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function Register() {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Register() {
     const [orderNumber, setOrderNumber] = useState(''); // 新增订单号状态
     const [paymentSuccess, setPaymentSuccess] = useState(false); // 新增支付状态
 
-    const handleRegister = () => {
+    const handleRegister = async () => {
         if (password !== confirmPassword) {
             setErrorMsg('两次输入的密码不一致');
             return;
@@ -21,10 +22,25 @@ function Register() {
             setErrorMsg('请完成支付后再注册');
             return;
         }
-        // 保存密码到本地存储
-        localStorage.setItem('user', JSON.stringify({ username, password }));
-        // 注册成功后导航到登录页面
-        navigate("/login");
+
+        try {
+            const response = await axios.post('http://localhost:3001/api/register', {
+                username,
+                password
+            });
+
+            if (response.data.success) {
+                // 保存用户名和密码到本地存储
+                localStorage.setItem('user', JSON.stringify({ username, password }));
+                // 注册成功后导航到登录页面
+                navigate("/login");
+            } else {
+                setErrorMsg(response.data.message || '注册失败');
+            }
+        } catch (error) {
+            console.error('注册失败:', error);
+            setErrorMsg('注册过程中发生错误');
+        }
     };
 
     const handlePayment = () => {
@@ -53,7 +69,6 @@ function Register() {
             }
         });
     };
-    
 
     return (
         <div>

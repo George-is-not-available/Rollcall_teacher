@@ -5,7 +5,6 @@ import CallRoll from './CallRoll/index.js';
 import Courses from './CoursesPage/index.js';
 import Register from './register';
 import AddCourseForm from './Addcourses/AddCoursePage.js';
-
 import imageUrl from './AD.png'; // 引入本地图片
 
 const App = () => {
@@ -16,7 +15,7 @@ const App = () => {
             setShowAd(true);
         }, 5000); // 5秒后显示广告
 
-        return () => clearTimeout(timer);
+        return () => clearTimeout(timer); // 清除定时器
     }, []);
 
     const handleCloseAd = () => {

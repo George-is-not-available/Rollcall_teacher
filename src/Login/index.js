@@ -2,6 +2,7 @@ import styles from './index.module.css';
 import React, { useState, useEffect } from 'react';
 import { Typography, Divider, Button, Input } from '@douyinfe/semi-ui';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function Login() {
     const navigate = useNavigate();
@@ -16,15 +17,28 @@ function Login() {
         setIsEmpty(!inputValue || !inputValue2);
     }, [inputValue, inputValue2]);
 
-    function isSucceed() {
-        // Retrieve stored user data from localStorage
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-        // Check if stored user data exists and matches the input values
-        if (storedUser && storedUser.username === inputValue && storedUser.password === inputValue2) {
-            // Login successful, navigate to "/Courses"
-            navigate("/courses");
-        } else {
-            // Login failed, display error message
+    async function isSucceed() {
+        try {
+            const response = await axios.post('http://localhost:3001/api/login', {
+                username: inputValue,
+                password: inputValue2
+            });
+
+            if (response.data.success) {
+                // 登录成功，保存用户信息到 localStorage 并跳转到课程页面
+                const user = { 
+                    id: response.data.user.id, 
+                    username: response.data.user.username, 
+                    password: inputValue2 
+                };
+                localStorage.setItem('user', JSON.stringify(user));
+                navigate("/courses");
+            } else {
+                // 登录失败，显示错误信息
+                setIsPrint(true);
+            }
+        } catch (error) {
+            console.error('登录失败:', error);
             setIsPrint(true);
         }
     }
